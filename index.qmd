@@ -24,9 +24,53 @@ Hello my name is Logan Clark and I'm a 4th year here at Cal State University Ful
 here::i_am("index.qmd")
 ```
 
-For my project I decided to look at the sales of Video Games. Video Games have been my main hobby for most of my life and I've always had an innate interest in sales numbers. I would go on Wikipedia just to look at the list of best selling games and see what changes would be happening on the chart on a weekly basis. 
+For my project I decided to look at the sales of Video Games. Video Games have been my main hobby for most of my life and I've always had an innate interest in sales numbers. I would go on Wikipedia just to look at the list of best selling games and see what changes would be happening on the chart on a weekly basis. Each game would have it's own entry and show us what console it came out on, when it came out, etc. It makes me wonder if there's any common trends among games that have higher sales overall, such as if a specific genre is more appealing, or if games on a certain console did better than others.
 
 ## Main Objective
 
-My main Objective for this project is 
+My main Objective for this project is to use clustering to see what games are similar and to see if we can see any patterns among games in the cluster that contains higher global sales.
 
+## Packages Used In This Analysis
+
+```{r}
+#| label: load packages
+#| message: false
+#| warning: false
+
+library(here)
+library(readr)
+library(dplyr)
+library(ggplot2)
+library(rsample)
+```
+
+
+| Package | Use |
+|-------------------------------|----------------------------------------|
+| [here](https://github.com/jennybc/here_here) | to easily load and save data |
+| [readr](https://readr.tidyverse.org/) | to import the CSV file data |
+| [dplyr](https://dplyr.tidyverse.org/) | to massage and summarize data |
+| [rsample](https://rsample.tidymodels.org/) | to split data into training and test sets |
+| [ggplot2](https://ggplot2.tidyverse.org/) | to create nice-looking and informative graphs |
+
+## Data Description
+
+```{r}
+#| label: import data
+#| warning: false
+
+```
+
+### Data Limitations
+
+## Data Wrangling (Optional Section)
+
+## Exploratory Data Analysis
+
+## Modeling
+
+## Insights
+
+### Limitations and Future Work
+
+### Reflection (Optional Subsection)

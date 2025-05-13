@@ -2,16 +2,27 @@
 title: "Data Wrangling and Modeling"
 ---
 
+## Packages Used In This Analysis
+
 ```{r}
+#| label: load packages
+#| message: false
+#| warning: false
+
 library(GGally)
 library(tidyverse)
-library(broom)
 library(tidyclust)
+library(broom)
 library(mclust)
 library(tidymodels)
-library(ISLR2)
 library(dplyr)
+library(ggplot2)
 ```
+
+GGally to get the ggpairs function
+tidyclust to specify clustering models
+
+
 
 ```{r}
 vgsales <- readr::read_csv("C:/Users/19493/Desktop/vgsales.csv")

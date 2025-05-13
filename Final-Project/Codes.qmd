@@ -1,5 +1,5 @@
 ---
-title: "CodeChunks"
+title: "Code"
 editor: visual
 ---
 
