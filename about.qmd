@@ -1,5 +1,5 @@
 ---
-title: "The Data Itself"
+title: "Data Wrangling and Modeling"
 ---
 
 ```{r}
