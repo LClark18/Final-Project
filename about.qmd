@@ -40,12 +40,28 @@ I got the dataset from a site called Kaggle.com and the data set analyzes sales 
 
 The Data has 11 different variables Rank is a games placement in sales, Name is the name of the game, Platform is which console said game came out on, Genre is the genre of the game, Publisher is who published the game, and the different Sales columns relate to how many copies the game sole in North America, Europe, Japan, all other territories, and final how many total copies were sold globally.
 
+## EDA
 
 ```{r}
 vgsales <- vgsales %>%
   filter(Global_Sales > 1) %>%
-  mutate(log_sales = log(Global_Sales))
+  mutate(log_sales = log(Global_Sales)) %>%
+mutate(NA_log_sales = log(NA_Sales + 0.01)) %>%
+mutate(EU_log_sales = log(EU_Sales + 0.01)) %>%
+mutate(JP_log_sales = log(JP_Sales + 0.01)) %>%
+mutate(OT_log_sales = log(Other_Sales + 0.1)) %>%
+  mutate(Platform = as.factor(Platform) |>
+fct_collapse(
+  Sony = c("PS", "PS2", "PS3", "PS4", "PSP", "PSV"),
+  Microsoft = c("X360", "XB", "XOne"),
+  Nintendo = c("NES", "SNES", "Wii", "WiiU", "GC", "N64", "3DS", "DS", "GB", "GBA"),
+  Other = c("2600", "DC", "GEN", "PC", "SAT", "SCD")
+))
 ```
+
+
+
+
 
 ```{r}
 ggplot(data = vgsales,
@@ -56,4 +72,113 @@ ggplot(data = vgsales,
 ```{r}
 ggplot(data = vgsales,
        aes(x = Year, y = log_sales)) + geom_boxplot()
+```
+
+
+## Modeling
+
+```{r}
+vg_split <- initial_split(vgsales, prop = 0.75) 
+
+vg_train <- training(vg_split)
+vg_test <- testing(vg_split)
+```
+
+```{r}
+kmeans_recipe_fv <- recipe(~ log_sales + NA_log_sales + EU_log_sales + JP_log_sales + OT_log_sales + Platform + Genre, 
+                           data = vg_train) |>
+  step_YeoJohnson(all_numeric_predictors()) |> # deal with skew issues
+  step_normalize(all_numeric_predictors()) |> # deal with different variances
+  step_dummy(all_nominal_predictors(), one_hot = TRUE) |> 
+  step_zv(all_predictors())
+```
+
+This is the recipe used for Kmeans clustering
+
+```{r}
+kmeans_model <- k_means(num_clusters = tune()) |>
+  set_args(nstart = 20)
+```
+
+The cluster model
+
+```{r}
+kmeans_wflow_fv <- workflow() |>
+  add_model(kmeans_model) |>
+  add_recipe(kmeans_recipe_fv)
+```
+
+```{r}
+set.seed(1002)
+fv_kfold_tidy <- vfold_cv(vg_train, v = 5, repeats = 1) 
+nclusters_grid <- data.frame(num_clusters = seq(1, 10))
+
+kmeans_tuned_fv <- tune_cluster(kmeans_wflow_fv,
+                                resamples = fv_kfold_tidy,
+                                metrics = cluster_metric_set(sse_total, 
+                                                             sse_within_total, sse_ratio),
+                                grid = nclusters_grid)
+
+tuned_metrics <- collect_metrics(kmeans_tuned_fv)
+
+tuned_metrics |>
+  arrange(desc(.metric), num_clusters) |>
+  select(num_clusters, .metric, mean, everything())
+```
+
+```{r}
+tuned_metrics |>
+  filter(.metric == "sse_ratio") |>
+  ggplot(aes(x = num_clusters, y = mean)) +
+  geom_point() + 
+  geom_line() +
+  labs(x = "Number of Clusters", y = "Mean WSS/TSS (5 folds)") +
+  scale_x_continuous(breaks = seq(1, 10))
+```
+
+```{r}
+kmeans_fv_3clusters <- kmeans_wflow_fv |>
+  finalize_workflow_tidyclust(parameters = list(num_clusters = 3))
+```
+
+```{r}
+set.seed(1002) 
+# always reset the seed before you re-fit, just in case something weird happens
+
+kmeans_fv_fit3 <- kmeans_fv_3clusters |>
+  fit(data = vg_train)
+```
+
+```{r}
+vg3 <- bind_cols(
+  vg_train,
+  kmeans_fv_fit3 |> extract_cluster_assignment())
+
+vg3 |>
+  select(Name, .cluster, everything())
+```
+
+```{r}
+library(GGally)
+ggpairs(vg3, columns = c("log_sales", "NA_log_sales", "EU_log_sales", "JP_log_sales", "OT_log_sales", "Platform", "Genre"),
+        aes(color = .cluster))
+```
+
+```{r}
+vg_predictions3 <- augment(kmeans_fv_fit3, 
+                        new_data = vg_test)
+
+ggpairs(vg_predictions3, columns = c("log_sales", "NA_log_sales", "EU_log_sales", "JP_log_sales", "OT_log_sales", "Platform", "Genre"),
+        aes(color = .pred_cluster))
+```
+
+```{r}
+vg_all_clusters3 <- bind_rows(
+  vg3,
+  vg_predictions3 |> rename(.cluster = .pred_cluster) # rename cluster variable name
+)
+```
+
+```{r}
+ggplot(data = vg_all_clusters3, mapping = aes(x = NA_log_sales, y = log_sales))
 ```
