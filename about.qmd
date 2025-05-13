@@ -3,5 +3,5 @@ title: "The Data Itself"
 ---
 
 ```{r}
-
+vgsales <- readr::read_csv("C:/Users/19493/Desktop/cereal3.csv")
 ```
