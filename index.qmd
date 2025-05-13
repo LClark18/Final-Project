@@ -11,7 +11,7 @@ links:
     href: https://github.com/LClark18
 ---
 
-This will contain my Math 437 final project
+Hello my name is Logan Clark and I'm a 4th year here at Cal State University Fullerton and this is my final project for my Math 437: Modern Data Analysis class.
 
 
 
