@@ -1,9 +1,7 @@
 ---
-title: "About"
+title: "The Data Itself"
 ---
 
-About this site
-
 ```{r}
-1 + 1
+
 ```
