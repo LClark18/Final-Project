@@ -21,10 +21,18 @@ library(ggplot2)
 
 GGally to get the ggpairs function
 tidyclust to specify clustering models
+Broom to Convert Statistical Objects into Tidy Tibbles
+mclust for model based clustering
+dplyr to massage and summarize data
+tidymodels for modeling
+tidyverse for piping and altering data
+ggplot2 for graphs in eda and clustering
 
-
+## Data Description
 
 ```{r}
+#| label: import data
+#| warning: false
 vgsales <- readr::read_csv("C:/Users/19493/Desktop/vgsales.csv")
 ```
 

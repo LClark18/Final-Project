@@ -1,9 +1,93 @@
 [
   {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Logan Clark 437 Final",
+    "section": "",
+    "text": "Hello my name is Logan Clark and I’m a 4th year here at Cal State University Fullerton and this is my final project for my Math 437: Modern Data Analysis class."
+  },
+  {
+    "objectID": "index.html#motivation-and-context",
+    "href": "index.html#motivation-and-context",
+    "title": "Logan Clark 437 Final",
+    "section": "Motivation and Context",
+    "text": "Motivation and Context\nFor my project I decided to look at the sales of Video Games. Video Games have been my main hobby for most of my life and I’ve always had an innate interest in sales numbers. I would go on Wikipedia just to look at the list of best selling games and see what changes would be happening on the chart on a weekly basis. Each game would have it’s own entry and show us what console it came out on, when it came out, etc. It makes me wonder if there’s any common trends among games that have higher sales overall, such as if a specific genre is more appealing, or if games on a certain console did better than others."
+  },
+  {
+    "objectID": "index.html#main-objective",
+    "href": "index.html#main-objective",
+    "title": "Logan Clark 437 Final",
+    "section": "Main Objective",
+    "text": "Main Objective\nMy main Objective for this project is to use clustering to see what games are similar and to see if we can see any patterns among games in the cluster that contains higher global sales."
+  },
+  {
+    "objectID": "index.html#packages-used-in-this-analysis",
+    "href": "index.html#packages-used-in-this-analysis",
+    "title": "Logan Clark 437 Final",
+    "section": "Packages Used In This Analysis",
+    "text": "Packages Used In This Analysis\n\nlibrary(here)\nlibrary(readr)\nlibrary(dplyr)\nlibrary(ggplot2)\nlibrary(rsample)\n\n\n\n\nPackage\nUse\n\n\n\n\nhere\nto easily load and save data\n\n\nreadr\nto import the CSV file data\n\n\ndplyr\nto massage and summarize data\n\n\nrsample\nto split data into training and test sets\n\n\nggplot2\nto create nice-looking and informative graphs"
+  },
+  {
+    "objectID": "index.html#data-description",
+    "href": "index.html#data-description",
+    "title": "Logan Clark 437 Final",
+    "section": "Data Description",
+    "text": "Data Description\n\nData Limitations"
+  },
+  {
+    "objectID": "index.html#data-wrangling-optional-section",
+    "href": "index.html#data-wrangling-optional-section",
+    "title": "Logan Clark 437 Final",
+    "section": "Data Wrangling (Optional Section)",
+    "text": "Data Wrangling (Optional Section)"
+  },
+  {
+    "objectID": "index.html#exploratory-data-analysis",
+    "href": "index.html#exploratory-data-analysis",
+    "title": "Logan Clark 437 Final",
+    "section": "Exploratory Data Analysis",
+    "text": "Exploratory Data Analysis"
+  },
+  {
+    "objectID": "index.html#modeling",
+    "href": "index.html#modeling",
+    "title": "Logan Clark 437 Final",
+    "section": "Modeling",
+    "text": "Modeling"
+  },
+  {
+    "objectID": "index.html#insights",
+    "href": "index.html#insights",
+    "title": "Logan Clark 437 Final",
+    "section": "Insights",
+    "text": "Insights\n\nLimitations and Future Work\n\n\nReflection (Optional Subsection)"
+  },
+  {
     "objectID": "about.html",
     "href": "about.html",
-    "title": "About",
+    "title": "Data Wrangling and Modeling",
     "section": "",
-    "text": "About this site\n\n1 + 1\n\n[1] 2"
+    "text": "library(GGally)\nlibrary(tidyverse)\nlibrary(tidyclust)\nlibrary(broom)\nlibrary(mclust)\nlibrary(tidymodels)\nlibrary(dplyr)\nlibrary(ggplot2)\n\nGGally to get the ggpairs function tidyclust to specify clustering models Broom to Convert Statistical Objects into Tidy Tibbles mclust for model based clustering dplyr to massage and summarize data tidymodels for modeling tidyverse for piping and altering data ggplot2 for graphs in eda and clustering"
+  },
+  {
+    "objectID": "about.html#packages-used-in-this-analysis",
+    "href": "about.html#packages-used-in-this-analysis",
+    "title": "Data Wrangling and Modeling",
+    "section": "",
+    "text": "library(GGally)\nlibrary(tidyverse)\nlibrary(tidyclust)\nlibrary(broom)\nlibrary(mclust)\nlibrary(tidymodels)\nlibrary(dplyr)\nlibrary(ggplot2)\n\nGGally to get the ggpairs function tidyclust to specify clustering models Broom to Convert Statistical Objects into Tidy Tibbles mclust for model based clustering dplyr to massage and summarize data tidymodels for modeling tidyverse for piping and altering data ggplot2 for graphs in eda and clustering"
+  },
+  {
+    "objectID": "about.html#data-description",
+    "href": "about.html#data-description",
+    "title": "Data Wrangling and Modeling",
+    "section": "Data Description",
+    "text": "Data Description\n\nvgsales &lt;- readr::read_csv(\"C:/Users/19493/Desktop/vgsales.csv\")\n\nI got the dataset from a site called Kaggle.com and the data set analyzes sales data from over 16,000 games that had more than 100,000 global sales. The data itself was generated by a scrape of vgchartz.com, which is another website that goes into deep analysis about video games sales.\nThe Data has 11 different variables Rank is a games placement in sales, Name is the name of the game, Platform is which console said game came out on, Genre is the genre of the game, Publisher is who published the game, and the different Sales columns relate to how many copies the game sole in North America, Europe, Japan, all other territories, and final how many total copies were sold globally.\n\nvgsales &lt;- vgsales %&gt;%\n  filter(Global_Sales &gt; 1) %&gt;%\n  mutate(log_sales = log(Global_Sales))\n\n\nggplot(data = vgsales,\n       aes(x = Year, y = Global_Sales)) + geom_boxplot()\n\n\n\n\n\n\n\n\n\nggplot(data = vgsales,\n       aes(x = Year, y = log_sales)) + geom_boxplot()"
+  },
+  {
+    "objectID": "Final-Project/Codes.html",
+    "href": "Final-Project/Codes.html",
+    "title": "Code",
+    "section": "",
+    "text": "Code Chunks for the website"
   }
 ]

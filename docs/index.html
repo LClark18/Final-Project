@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -70,7 +104,7 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed fullcontent">
+<body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -89,11 +123,11 @@ ul.task-list li input[type="checkbox"] {
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
     <a class="nav-link active" href="./index.html" aria-current="page"> 
-<span class="menu-text">Home</span></a>
+<span class="menu-text">Logan Clark 437 Final</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./about.html"> 
-<span class="menu-text">About</span></a>
+<span class="menu-text">Data Wrangling and Modeling</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./Codes.html"> 
@@ -110,7 +144,28 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+  <ul>
+  <li><a href="#motivation-and-context" id="toc-motivation-and-context" class="nav-link active" data-scroll-target="#motivation-and-context">Motivation and Context</a></li>
+  <li><a href="#main-objective" id="toc-main-objective" class="nav-link" data-scroll-target="#main-objective">Main Objective</a></li>
+  <li><a href="#packages-used-in-this-analysis" id="toc-packages-used-in-this-analysis" class="nav-link" data-scroll-target="#packages-used-in-this-analysis">Packages Used In This Analysis</a></li>
+  <li><a href="#data-description" id="toc-data-description" class="nav-link" data-scroll-target="#data-description">Data Description</a>
+  <ul class="collapse">
+  <li><a href="#data-limitations" id="toc-data-limitations" class="nav-link" data-scroll-target="#data-limitations">Data Limitations</a></li>
+  </ul></li>
+  <li><a href="#data-wrangling-optional-section" id="toc-data-wrangling-optional-section" class="nav-link" data-scroll-target="#data-wrangling-optional-section">Data Wrangling (Optional Section)</a></li>
+  <li><a href="#exploratory-data-analysis" id="toc-exploratory-data-analysis" class="nav-link" data-scroll-target="#exploratory-data-analysis">Exploratory Data Analysis</a></li>
+  <li><a href="#modeling" id="toc-modeling" class="nav-link" data-scroll-target="#modeling">Modeling</a></li>
+  <li><a href="#insights" id="toc-insights" class="nav-link" data-scroll-target="#insights">Insights</a>
+  <ul class="collapse">
+  <li><a href="#limitations-and-future-work" id="toc-limitations-and-future-work" class="nav-link" data-scroll-target="#limitations-and-future-work">Limitations and Future Work</a></li>
+  <li><a href="#reflection-optional-subsection" id="toc-reflection-optional-subsection" class="nav-link" data-scroll-target="#reflection-optional-subsection">Reflection (Optional Subsection)</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <div class="quarto-about-jolla content">
   <img src="Logan_Clark.jpg" class="about-image
@@ -124,7 +179,81 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </header><main class="content" id="quarto-document-content">
 
+<p>Hello my name is Logan Clark and I’m a 4th year here at Cal State University Fullerton and this is my final project for my Math 437: Modern Data Analysis class.</p>
+<section id="motivation-and-context" class="level2">
+<h2 data-anchor-id="motivation-and-context">Motivation and Context</h2>
+<p>For my project I decided to look at the sales of Video Games. Video Games have been my main hobby for most of my life and I’ve always had an innate interest in sales numbers. I would go on Wikipedia just to look at the list of best selling games and see what changes would be happening on the chart on a weekly basis. Each game would have it’s own entry and show us what console it came out on, when it came out, etc. It makes me wonder if there’s any common trends among games that have higher sales overall, such as if a specific genre is more appealing, or if games on a certain console did better than others.</p>
+</section>
+<section id="main-objective" class="level2">
+<h2 data-anchor-id="main-objective">Main Objective</h2>
+<p>My main Objective for this project is to use clustering to see what games are similar and to see if we can see any patterns among games in the cluster that contains higher global sales.</p>
+</section>
+<section id="packages-used-in-this-analysis" class="level2">
+<h2 data-anchor-id="packages-used-in-this-analysis">Packages Used In This Analysis</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rsample)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Package</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="https://github.com/jennybc/here_here">here</a></td>
+<td>to easily load and save data</td>
+</tr>
+<tr class="even">
+<td><a href="https://readr.tidyverse.org/">readr</a></td>
+<td>to import the CSV file data</td>
+</tr>
+<tr class="odd">
+<td><a href="https://dplyr.tidyverse.org/">dplyr</a></td>
+<td>to massage and summarize data</td>
+</tr>
+<tr class="even">
+<td><a href="https://rsample.tidymodels.org/">rsample</a></td>
+<td>to split data into training and test sets</td>
+</tr>
+<tr class="odd">
+<td><a href="https://ggplot2.tidyverse.org/">ggplot2</a></td>
+<td>to create nice-looking and informative graphs</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="data-description" class="level2">
+<h2 data-anchor-id="data-description">Data Description</h2>
+<section id="data-limitations" class="level3">
+<h3 data-anchor-id="data-limitations">Data Limitations</h3>
+</section>
+</section>
+<section id="data-wrangling-optional-section" class="level2">
+<h2 data-anchor-id="data-wrangling-optional-section">Data Wrangling (Optional Section)</h2>
+</section>
+<section id="exploratory-data-analysis" class="level2">
+<h2 data-anchor-id="exploratory-data-analysis">Exploratory Data Analysis</h2>
+</section>
+<section id="modeling" class="level2">
+<h2 data-anchor-id="modeling">Modeling</h2>
+</section>
+<section id="insights" class="level2">
+<h2 data-anchor-id="insights">Insights</h2>
+<section id="limitations-and-future-work" class="level3">
+<h3 data-anchor-id="limitations-and-future-work">Limitations and Future Work</h3>
+</section>
+<section id="reflection-optional-subsection" class="level3">
+<h3 data-anchor-id="reflection-optional-subsection">Reflection (Optional Subsection)</h3>
 
+
+</section>
+</section>
 </main>  
 </div>
  <!-- /main -->
