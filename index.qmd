@@ -30,29 +30,6 @@ For my project I decided to look at the sales of Video Games. Video Games have b
 
 My main Objective for this project is to use clustering to see what games are similar and to see if we can see any patterns among games in the cluster that contains higher global sales.
 
-## Packages Used In This Analysis
-
-```{r}
-#| label: load packages
-#| message: false
-#| warning: false
-
-library(here)
-library(readr)
-library(dplyr)
-library(ggplot2)
-library(rsample)
-```
-
-
-| Package | Use |
-|-------------------------------|----------------------------------------|
-| [here](https://github.com/jennybc/here_here) | to easily load and save data |
-| [readr](https://readr.tidyverse.org/) | to import the CSV file data |
-| [dplyr](https://dplyr.tidyverse.org/) | to massage and summarize data |
-| [rsample](https://rsample.tidymodels.org/) | to split data into training and test sets |
-| [ggplot2](https://ggplot2.tidyverse.org/) | to create nice-looking and informative graphs |
-
 ## Data Description
 
 ```{r}
@@ -63,11 +40,12 @@ library(rsample)
 
 ### Data Limitations
 
+The data only contains data until about 2016, so the data set itself is old and needs to be updated
+
+
 ## Data Wrangling (Optional Section)
 
 ## Exploratory Data Analysis
-
-## Modeling
 
 ## Insights
 
