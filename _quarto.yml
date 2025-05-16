@@ -7,8 +7,6 @@ website:
   navbar:
     left:
       - href: index.qmd
-      - about.qmd
-      - Codes.qmd
        # text: Home
 format:
   html:

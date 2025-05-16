@@ -126,14 +126,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="nav-link" href="./index.html"> 
 <span class="menu-text">Logan Clark 437 Final</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link active" href="./about.html" aria-current="page"> 
-<span class="menu-text">Data Wrangling and Modeling</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./Codes.html"> 
-<span class="menu-text">CodeChunks</span></a>
-  </li>  
 </ul>
           </div> <!-- /navcollapse -->
           <div class="quarto-navbar-tools">
@@ -291,41 +283,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>                                                             sse_within_total, sse_ratio),</span>
 <span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>                                <span class="at">grid =</span> nclusters_grid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>! Fold2: preprocessor 1/1, model 7/10: did not converge in 10 iterations</code></pre>
+<pre><code>! Fold1: preprocessor 1/1, model 9/10: did not converge in 10 iterations</code></pre>
 </div>
-<div class="cell-output cell-output-stderr">
-<pre><code>! Fold3: preprocessor 1/1, model 9/10: did not converge in 10 iterations</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>tuned_metrics <span class="ot">&lt;-</span> <span class="fu">collect_metrics</span>(kmeans_tuned_fv)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>tuned_metrics <span class="sc">|&gt;</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(.metric), num_clusters) <span class="sc">|&gt;</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(num_clusters, .metric, mean, <span class="fu">everything</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>tuned_metrics <span class="ot">&lt;-</span> <span class="fu">collect_metrics</span>(kmeans_tuned_fv)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>tuned_metrics <span class="sc">|&gt;</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(.metric), num_clusters) <span class="sc">|&gt;</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(num_clusters, .metric, mean, <span class="fu">everything</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 30 × 7
    num_clusters .metric           mean .estimator     n std_err .config         
           &lt;int&gt; &lt;chr&gt;            &lt;dbl&gt; &lt;chr&gt;      &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;           
- 1            1 sse_within_total 8051. standard       5    3.05 Preprocessor1_M…
- 2            2 sse_within_total 5903. standard       5    5.26 Preprocessor1_M…
- 3            3 sse_within_total 4894. standard       5    3.44 Preprocessor1_M…
- 4            4 sse_within_total 4434. standard       5    7.06 Preprocessor1_M…
- 5            5 sse_within_total 4078. standard       5   15.5  Preprocessor1_M…
- 6            6 sse_within_total 3810. standard       5   13.5  Preprocessor1_M…
- 7            7 sse_within_total 3581. standard       5   12.3  Preprocessor1_M…
- 8            8 sse_within_total 3404. standard       5   12.1  Preprocessor1_M…
- 9            9 sse_within_total 3245. standard       5   15.6  Preprocessor1_M…
-10           10 sse_within_total 3118. standard       5   10.2  Preprocessor1_M…
+ 1            1 sse_within_total 8053. standard       5    1.37 Preprocessor1_M…
+ 2            2 sse_within_total 5870. standard       5   13.7  Preprocessor1_M…
+ 3            3 sse_within_total 4883. standard       5    4.38 Preprocessor1_M…
+ 4            4 sse_within_total 4431. standard       5    6.78 Preprocessor1_M…
+ 5            5 sse_within_total 4079. standard       5    5.64 Preprocessor1_M…
+ 6            6 sse_within_total 3803. standard       5    5.80 Preprocessor1_M…
+ 7            7 sse_within_total 3572. standard       5    4.36 Preprocessor1_M…
+ 8            8 sse_within_total 3400. standard       5    8.45 Preprocessor1_M…
+ 9            9 sse_within_total 3253. standard       5    5.96 Preprocessor1_M…
+10           10 sse_within_total 3125. standard       5    4.90 Preprocessor1_M…
 # ℹ 20 more rows</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>tuned_metrics <span class="sc">|&gt;</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(.metric <span class="sc">==</span> <span class="st">"sse_ratio"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> num_clusters, <span class="at">y =</span> mean)) <span class="sc">+</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Number of Clusters"</span>, <span class="at">y =</span> <span class="st">"Mean WSS/TSS (5 folds)"</span>) <span class="sc">+</span></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>tuned_metrics <span class="sc">|&gt;</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(.metric <span class="sc">==</span> <span class="st">"sse_ratio"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> num_clusters, <span class="at">y =</span> mean)) <span class="sc">+</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Number of Clusters"</span>, <span class="at">y =</span> <span class="st">"Mean WSS/TSS (5 folds)"</span>) <span class="sc">+</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -335,37 +324,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>kmeans_fv_3clusters <span class="ot">&lt;-</span> kmeans_wflow_fv <span class="sc">|&gt;</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">finalize_workflow_tidyclust</span>(<span class="at">parameters =</span> <span class="fu">list</span>(<span class="at">num_clusters =</span> <span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>kmeans_fv_3clusters <span class="ot">&lt;-</span> kmeans_wflow_fv <span class="sc">|&gt;</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">finalize_workflow_tidyclust</span>(<span class="at">parameters =</span> <span class="fu">list</span>(<span class="at">num_clusters =</span> <span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1002</span>) </span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co"># always reset the seed before you re-fit, just in case something weird happens</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>kmeans_fv_fit3 <span class="ot">&lt;-</span> kmeans_fv_3clusters <span class="sc">|&gt;</span></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>(<span class="at">data =</span> vg_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1002</span>) </span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co"># always reset the seed before you re-fit, just in case something weird happens</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>kmeans_fv_fit3 <span class="ot">&lt;-</span> kmeans_fv_3clusters <span class="sc">|&gt;</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>(<span class="at">data =</span> vg_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>vg3 <span class="ot">&lt;-</span> <span class="fu">bind_cols</span>(</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  vg_train,</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  kmeans_fv_fit3 <span class="sc">|&gt;</span> <span class="fu">extract_cluster_assignment</span>())</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>vg3 <span class="sc">|&gt;</span></span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Name, .cluster, <span class="fu">everything</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>vg3 <span class="ot">&lt;-</span> <span class="fu">bind_cols</span>(</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  vg_train,</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  kmeans_fv_fit3 <span class="sc">|&gt;</span> <span class="fu">extract_cluster_assignment</span>())</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>vg3 <span class="sc">|&gt;</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Name, .cluster, <span class="fu">everything</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1,540 × 17
    Name          .cluster  Rank Platform Year  Genre Publisher NA_Sales EU_Sales
    &lt;chr&gt;         &lt;fct&gt;    &lt;dbl&gt; &lt;fct&gt;    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;        &lt;dbl&gt;    &lt;dbl&gt;
- 1 Bad Boys: Mi… Cluster…  1767 Sony     2004  Shoo… Empire I…     0.56     0.44
- 2 Big Beach Sp… Cluster…  1086 Nintendo 2008  Spor… THQ           0.45     1.02
- 3 We Ski        Cluster…  1053 Nintendo 2008  Spor… Namco Ba…     0.99     0.42
- 4 Imagine: Fas… Cluster…  1922 Nintendo 2008  Simu… Ubisoft       0.65     0.32
- 5 Crackdown 2   Cluster…  1822 Microso… 2010  Shoo… Microsof…     0.63     0.37
- 6 Skylanders G… Cluster…  1499 Microso… 2012  Acti… Activisi…     0.75     0.45
- 7 Battlefield 4 Cluster…   366 Microso… 2013  Shoo… Electron…     2.14     1.08
- 8 Lode Runner   Cluster…  1859 Nintendo 1984  Puzz… Hudson S…     0        0   
- 9 Buzz! The Mu… Cluster…  1147 Sony     2005  Misc  Sony Com…     0        1.18
-10 Cabela's Big… Cluster…  1050 Nintendo 2009  Spor… Activisi…     1.58     0   
+ 1 Game Party 3  Cluster…  1043 Nintendo 2009  Puzz… Warner B…     1.43     0.16
+ 2 Grand Theft … Cluster…   875 Microso… 2005  Acti… Take-Two…     1.26     0.61
+ 3 Fable         Cluster…   569 Microso… 2004  Role… Microsof…     1.99     0.58
+ 4 Call of Duty… Cluster…  1128 Other    N/A   Shoo… Activisi…     0.58     0.81
+ 5 Donkey Kong … Cluster…    72 Nintendo 1994  Plat… Nintendo      4.36     1.71
+ 6 Imagine: Wed… Cluster…  1542 Nintendo 2008  Simu… Ubisoft       0.55     0.59
+ 7 Pac-Man Worl… Cluster…  1242 Sony     2002  Acti… Namco Ba…     1.26     0.05
+ 8 Max Payne 2:… Cluster…  1464 Sony     2003  Shoo… Take-Two…     0.65     0.51
+ 9 Mortal Komba… Cluster…   620 Sony     2002  Figh… Midway G…     1.81     0.52
+10 The Lord of … Cluster…  1797 Microso… 2003  Acti… Electron…     0.71     0.38
 # ℹ 1,530 more rows
 # ℹ 8 more variables: JP_Sales &lt;dbl&gt;, Other_Sales &lt;dbl&gt;, Global_Sales &lt;dbl&gt;,
 #   log_sales &lt;dbl&gt;, NA_log_sales &lt;dbl&gt;, EU_log_sales &lt;dbl&gt;,
@@ -373,9 +362,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(GGally)</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpairs</span>(vg3, <span class="at">columns =</span> <span class="fu">c</span>(<span class="st">"log_sales"</span>, <span class="st">"NA_log_sales"</span>, <span class="st">"EU_log_sales"</span>, <span class="st">"JP_log_sales"</span>, <span class="st">"OT_log_sales"</span>, <span class="st">"Platform"</span>, <span class="st">"Genre"</span>),</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">aes</span>(<span class="at">color =</span> .cluster))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(GGally)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpairs</span>(vg3, <span class="at">columns =</span> <span class="fu">c</span>(<span class="st">"log_sales"</span>, <span class="st">"NA_log_sales"</span>, <span class="st">"EU_log_sales"</span>, <span class="st">"JP_log_sales"</span>, <span class="st">"OT_log_sales"</span>, <span class="st">"Platform"</span>, <span class="st">"Genre"</span>),</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">aes</span>(<span class="at">color =</span> .cluster))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
@@ -397,11 +386,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>vg_predictions3 <span class="ot">&lt;-</span> <span class="fu">augment</span>(kmeans_fv_fit3, </span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">new_data =</span> vg_test)</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpairs</span>(vg_predictions3, <span class="at">columns =</span> <span class="fu">c</span>(<span class="st">"log_sales"</span>, <span class="st">"NA_log_sales"</span>, <span class="st">"EU_log_sales"</span>, <span class="st">"JP_log_sales"</span>, <span class="st">"OT_log_sales"</span>, <span class="st">"Platform"</span>, <span class="st">"Genre"</span>),</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">aes</span>(<span class="at">color =</span> .pred_cluster))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>vg_predictions3 <span class="ot">&lt;-</span> <span class="fu">augment</span>(kmeans_fv_fit3, </span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">new_data =</span> vg_test)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpairs</span>(vg_predictions3, <span class="at">columns =</span> <span class="fu">c</span>(<span class="st">"log_sales"</span>, <span class="st">"NA_log_sales"</span>, <span class="st">"EU_log_sales"</span>, <span class="st">"JP_log_sales"</span>, <span class="st">"OT_log_sales"</span>, <span class="st">"Platform"</span>, <span class="st">"Genre"</span>),</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">aes</span>(<span class="at">color =</span> .pred_cluster))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
@@ -423,16 +412,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>vg_all_clusters3 <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  vg3,</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  vg_predictions3 <span class="sc">|&gt;</span> <span class="fu">rename</span>(<span class="at">.cluster =</span> .pred_cluster) <span class="co"># rename cluster variable name</span></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>vg_all_clusters3 <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  vg3,</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  vg_predictions3 <span class="sc">|&gt;</span> <span class="fu">rename</span>(<span class="at">.cluster =</span> .pred_cluster) <span class="co"># rename cluster variable name</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="insights" class="level2">
 <h2 class="anchored" data-anchor-id="insights">Insights</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> vg_all_clusters3, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> log_sales, <span class="at">fill =</span> .cluster)) <span class="sc">+</span> <span class="fu">geom_density</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> vg_all_clusters3, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> log_sales, <span class="at">fill =</span> .cluster)) <span class="sc">+</span> <span class="fu">geom_density</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -442,7 +431,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> vg_all_clusters3, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> NA_log_sales, <span class="at">fill =</span> .cluster)) <span class="sc">+</span> <span class="fu">geom_density</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> vg_all_clusters3, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> NA_log_sales, <span class="at">fill =</span> .cluster)) <span class="sc">+</span> <span class="fu">geom_density</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -452,7 +441,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> vg_all_clusters3, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> EU_log_sales, <span class="at">fill =</span> .cluster)) <span class="sc">+</span> <span class="fu">geom_density</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> vg_all_clusters3, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> EU_log_sales, <span class="at">fill =</span> .cluster)) <span class="sc">+</span> <span class="fu">geom_density</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -462,7 +451,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> vg_all_clusters3, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> JP_log_sales, <span class="at">fill =</span> .cluster)) <span class="sc">+</span> <span class="fu">geom_density</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> vg_all_clusters3, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> JP_log_sales, <span class="at">fill =</span> .cluster)) <span class="sc">+</span> <span class="fu">geom_density</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -472,7 +461,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> vg_all_clusters3, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> OT_log_sales, <span class="at">fill =</span> .cluster)) <span class="sc">+</span> <span class="fu">geom_density</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> vg_all_clusters3, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> OT_log_sales, <span class="at">fill =</span> .cluster)) <span class="sc">+</span> <span class="fu">geom_density</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -482,7 +471,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> vg_all_clusters3, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Platform, <span class="at">fill =</span> .cluster)) <span class="sc">+</span> <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> vg_all_clusters3, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Platform, <span class="at">fill =</span> .cluster)) <span class="sc">+</span> <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -492,7 +481,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> vg_all_clusters3, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Genre, <span class="at">fill =</span> .cluster)) <span class="sc">+</span> <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> vg_all_clusters3, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Genre, <span class="at">fill =</span> .cluster)) <span class="sc">+</span> <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
